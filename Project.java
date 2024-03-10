@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Project {
   public static void main(String[] args) throws IOException {
     Seating[][] seatings = new Seating[20][3];
-    Train train = new Train();
+    Train train = new Train(seatings);
   
     for (int i = 0; i < 20; i++) {
       for (int j = 0; j < 3; j++) {
@@ -53,7 +53,7 @@ public class Project {
         int row = train.calculatePositionRow(positionSeat);
         int column = train.calculatePositionColumn(positionSeat);
 
-        seatings[row][column].setBusy();
+        train.setSeatingWithBusy(row, column);
 
         printCroquis(seatings);
 
