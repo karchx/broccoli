@@ -37,17 +37,21 @@ public class Project {
 
   public static void printMenu() {
     System.out.println("0. Salir");
-    System.out.println("1. Insertar");
-    System.out.println("2. Ver asientos");
+    System.out.println("1. Ver asientos");
+    System.out.println("2. Reservar Asiento");
+    System.out.println("3. Liberar Asiento");
   }
 
   public static void selectOptionMenu(int option, Seating[][]seatings, Train train) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     switch (option) {
       case 1:
         printCroquis(seatings);
+        break;
+      case 2:
+        printCroquis(seatings);
         System.out.println();
         System.out.println("Ingrese el numero de asientos a ocupar");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int positionSeat = Integer.parseInt(reader.readLine());
 
         int row = train.calculatePositionRow(positionSeat);
@@ -58,7 +62,17 @@ public class Project {
         printCroquis(seatings);
 
         break;
-      case 2:
+      case 3:
+        printCroquis(seatings);
+        System.out.println();
+        System.out.println("Ingrese el numero de asientos a liberar");
+        int positionSeatUnset = Integer.parseInt(reader.readLine());
+
+        int rowUnset = train.calculatePositionRow(positionSeatUnset);
+        int columnUnset = train.calculatePositionColumn(positionSeatUnset);
+
+        train.unsetSeatingWithBusy(rowUnset, columnUnset);
+
         printCroquis(seatings);
         break;
       default:
