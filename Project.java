@@ -21,11 +21,9 @@ public class Project {
       int option;
       String optionRead = reader.readLine();
       option = Integer.parseInt(optionRead);
-      selectOptionMenu(option);
+      selectOptionMenu(option, seatings);
       if (option == 0) break;
     }
-    //printCroquis(seatings);
-
   }
 
   public static void printCroquis(Seating[][] seatings) {
@@ -41,14 +39,16 @@ public class Project {
   public static void printMenu() {
     System.out.println("0. Salir");
     System.out.println("1. Insertar");
+    System.out.println("2. Ver asientos");
   }
 
-  public static void selectOptionMenu(int option) {
+  public static void selectOptionMenu(int option, Seating[][]seatings) {
     switch (option) {
       case 1:
         System.out.println("Inserta");
         break;
-      case 0:
+      case 2:
+        printCroquis(seatings);
         break;
       default:
         break;
