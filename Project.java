@@ -5,23 +5,22 @@ import java.io.IOException;
 public class Project {
   public static void main(String[] args) throws IOException {
     Seating[][] seatings = new Seating[20][3];
+    Train train = new Train();
   
     for (int i = 0; i < 20; i++) {
       for (int j = 0; j < 3; j++) {
         seatings[i][j] = new Seating((i * 3) + j + 1);
       }
     }
-   // seatings[0][0].setBusy();
-   // seatings[1][1].setBusy();
-   // seatings[2][2].setBusy();
 
     while(true) {
       printMenu();
+      System.out.println();
       BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
       int option;
       String optionRead = reader.readLine();
       option = Integer.parseInt(optionRead);
-      selectOptionMenu(option, seatings);
+      selectOptionMenu(option, seatings, train);
       if (option == 0) break;
     }
   }
@@ -42,7 +41,7 @@ public class Project {
     System.out.println("2. Ver asientos");
   }
 
-  public static void selectOptionMenu(int option, Seating[][]seatings) throws IOException {
+  public static void selectOptionMenu(int option, Seating[][]seatings, Train train) throws IOException {
     switch (option) {
       case 1:
         printCroquis(seatings);
@@ -51,8 +50,8 @@ public class Project {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int positionSeat = Integer.parseInt(reader.readLine());
 
-        int row = calculatePositionRow(positionSeat);
-        int column = calculatePositionColumn(positionSeat);
+        int row = train.calculatePositionRow(positionSeat);
+        int column = train.calculatePositionColumn(positionSeat);
 
         seatings[row][column].setBusy();
 
@@ -65,14 +64,5 @@ public class Project {
       default:
         break;
     }
-  }
-
-
-  public static int calculatePositionRow(int seat) {
-    return (seat - 1) / 3;
-  }
-
-  public static int calculatePositionColumn(int seat) {
-    return (seat - 1) % 3;
   }
 }
