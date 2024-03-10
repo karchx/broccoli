@@ -1,8 +1,10 @@
 class Seating {
   private boolean busy;
+  private int seatNumber;
 
-  public Seating() {
+  public Seating(int seatNumber) {
     this.busy = false;
+    this.seatNumber = seatNumber;
   }
 
   public boolean isBusy() {
@@ -19,6 +21,6 @@ class Seating {
 
   @Override
   public String toString() {
-    return busy ? "X" : "O";
+    return (busy ? "X" : "O") + " - " + seatNumber;
   }
 }

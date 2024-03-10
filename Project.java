@@ -8,12 +8,12 @@ public class Project {
   
     for (int i = 0; i < 20; i++) {
       for (int j = 0; j < 3; j++) {
-        seatings[i][j] = new Seating();
+        seatings[i][j] = new Seating((i * 3) + j + 1);
       }
     }
-    seatings[0][0].setBusy();
-    seatings[1][1].setBusy();
-    seatings[2][2].setBusy();
+   // seatings[0][0].setBusy();
+   // seatings[1][1].setBusy();
+   // seatings[2][2].setBusy();
 
     while(true) {
       printMenu();
