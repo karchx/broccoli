@@ -42,10 +42,22 @@ public class Project {
     System.out.println("2. Ver asientos");
   }
 
-  public static void selectOptionMenu(int option, Seating[][]seatings) {
+  public static void selectOptionMenu(int option, Seating[][]seatings) throws IOException {
     switch (option) {
       case 1:
-        System.out.println("Inserta");
+        printCroquis(seatings);
+        System.out.println();
+        System.out.println("Ingrese el numero de asientos a ocupar");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int positionSeat = Integer.parseInt(reader.readLine());
+
+        int row = calculatePositionRow(positionSeat);
+        int column = calculatePositionColumn(positionSeat);
+
+        seatings[row][column].setBusy();
+
+        printCroquis(seatings);
+
         break;
       case 2:
         printCroquis(seatings);
@@ -53,5 +65,14 @@ public class Project {
       default:
         break;
     }
+  }
+
+
+  public static int calculatePositionRow(int seat) {
+    return (seat - 1) / 3;
+  }
+
+  public static int calculatePositionColumn(int seat) {
+    return (seat - 1) % 3;
   }
 }
