@@ -36,4 +36,8 @@ class Train {
       System.out.println("El asiento ya esta libre");
     }
   }
+  
+  public boolean isWindowSeat(int row, int column) {
+        return column == 0 || column == 2;
+    }
 }
