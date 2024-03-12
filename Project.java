@@ -40,6 +40,7 @@ public class Project {
     System.out.println("1. Ver asientos");
     System.out.println("2. Reservar Asiento");
     System.out.println("3. Liberar Asiento");
+    System.out.println("4. Tipo de Asiento");
   }
 
   public static void selectOptionMenu(int option, Seating[][]seatings, Train train) throws IOException {
@@ -74,6 +75,18 @@ public class Project {
         train.unsetSeatingWithBusy(rowUnset, columnUnset);
 
         printCroquis(seatings);
+        
+        break;
+         case 4:
+        System.out.println("Ingrese el numero de asiento para verificar tipo (ventana o pasillo)");
+        int seatNumber = Integer.parseInt(reader.readLine());
+        int seatRow = train.calculatePositionRow(seatNumber);
+        int seatColumn = train.calculatePositionColumn(seatNumber);
+        if (train.isWindowSeat(seatRow, seatColumn)) {
+          System.out.println("El asiento seleccionado es una ventana.");
+        } else {
+          System.out.println("El asiento seleccionado es un pasillo.");
+        }
         break;
       default:
         break;
